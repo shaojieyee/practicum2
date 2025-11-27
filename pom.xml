@@ -1,16 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>orgname.com.se</groupId>
   <artifactId>practicum2</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>practicum2 Maven Webapp</name>
-  <url>http://maven.apache.org</url>
 
   <!--added properties for version-->
   <properties>
-    <java.version>21</java.version>
+    <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,8 +22,7 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-
-  <!--added dependencies for RestFul Web Service-->
+    <!--added dependencies for RestFul Web Service-->
     <dependency>
       <groupId>jakarta.ws.rs</groupId>
       <artifactId>jakarta.ws.rs-api</artifactId>
@@ -44,11 +42,11 @@
       <artifactId>jersey-hk2</artifactId>
       <version>3.1.1</version>
     </dependency>
+         <!--for using json with jersey-->
     <dependency>
-          <!--for using json with jersey-->
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-json-jackson</artifactId>
-      <version>4.0.0</version>
+      <version>3.1.1</version>
     </dependency>
 
     <!--added maven javadoc dependencies-->
@@ -61,7 +59,6 @@
 
   <build>
     <finalName>${project.artifactId}</finalName>
-
     <!--added plugin for maven-->
     <plugins>
       <plugin>
