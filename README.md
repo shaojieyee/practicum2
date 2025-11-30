@@ -1,6 +1,9 @@
 <h2>Http requests:</h2>
 <b>End point 1: getting all the names and department numbers</b>
 <p>http://localhost:8092/practicum2/api/departments/list</p>
+<b>Test connection:</b>
+<p>http://localhost:8092/practicum2/api/departments/ping</p>
+<p>http://localhost:8092/practicum2/api/employees/ping</p>
 
 <h3>lastest updates:</h3>
 <p> </p>
