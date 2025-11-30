@@ -3,34 +3,35 @@ package practicum2.rest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import practicum2.entity.Employee;
-import practicum2.service.EmployeeDao;
+import practicum2.entity.Department;
+import practicum2.service.DepartmentDao;
 
-@Path("/employees")
+import java.util.List;
+
+@Path("/departments")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class EmployeeResource {
+public class DepartmentResource {
 
-    private EmployeeDao employeeDao;
-    public EmployeeResource() {this.employeeDao = new EmployeeDao();}
+    private DepartmentDao departmentDao;
+    public DepartmentResource() {this.departmentDao = new DepartmentDao();}
 
     @GET
     @Path("/ping")
     public Response ping() {
-        return Response.ok().entity("Employee service online").build();
+        return Response.ok().entity("Department service online").build();
     }
 
     @GET
-    @Path("/{empNo}")
-    public Response getEmployeeByEmpNo(@PathParam("empNo") int empNo) {
-
+    @Path("/list")
+    public Response getDisnstictDeparments() {
         try {
-            Employee employee = employeeDao.findEmployeeByEmpNo(empNo);
-            if (employee != null) {
-                return Response.ok(employee).build();
+            List<Department> department = departmentDao.findAllUniqueDepartment();
+            if (department != null) {
+                return Response.ok(department).build();
             } else {
                 return Response.status(Response.Status.NOT_FOUND)
-                        .entity("{\"error\": \"Employee not found\"}")
+                        .entity("{\"error\": \"Department not found\"}")
                         .build();
             }
         } catch (Exception e) {

@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedQuery(name = "Department.findDistinctDepartments",
-        query = "SELECT DISTINCT d FROM Department d"
-)
+        query = "SELECT DISTINCT d FROM Department d ORDER BY d.deptNo")
 @Entity
 @Table(name = "departments", schema = "employees")
 public class Department {
