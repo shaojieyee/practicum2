@@ -3,7 +3,7 @@
 * From: https://www.baeldung.com/jax-rs-spec-and-implementations
 * Edited By: Angeline Tan
 * Edited On: 20 November 2021
-* Description: RESTful web service that has a single Message object as
+* Description: RESTful web service that has a single TestMessage object as
 *              a resource.
 *
 **********************************************************************************/

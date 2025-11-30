@@ -12,7 +12,6 @@ package practicum2.service;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import practicum2.model.Message;
 
 @Path("/demo")
 public class MessagesServices {
@@ -28,7 +27,7 @@ public class MessagesServices {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getNotification(@PathParam("id") int id) {
         return Response.ok()
-                .entity(new Message(id, "test message"))
+                .entity(new TestMessage(id, "test message"))
                 .build();
     }
 
@@ -36,7 +35,7 @@ public class MessagesServices {
     @Path("/post/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postNotification(Message notification) {
+    public Response postNotification(TestMessage notification) {
         return Response.status(201).entity(notification).build();
     }
 }
