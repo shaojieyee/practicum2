@@ -18,9 +18,11 @@ public class DeptManager {
 
     //relationship
     @ManyToOne
+    @MapsId("deptNo")
     @JoinColumn(name = "dept_no", referencedColumnName = "dept_no")
     private Department department;
     @ManyToOne
+    @MapsId("empNo")
     @JoinColumn(name="emp_no", referencedColumnName = "emp_no")
     private Employee employee;
 
