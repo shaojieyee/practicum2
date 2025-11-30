@@ -13,9 +13,14 @@ public class EmployeeDao {
 
         try {
             em = DatabaseUtil.createEntityManager();
-            return em.createNamedQuery("Employee.findByEmpNo", Employee.class)
+            Employee employee = em.createNamedQuery("Employee.findByEmpNo", Employee.class)
                     .setParameter("empNo", empNo)
                     .getSingleResult();
+
+            employee.getSalaries().size(); // This forces initialization
+            employee.getTitles().size();   // This forces initialization
+
+            return employee;
 
         } catch (NoResultException e) {
             return null;

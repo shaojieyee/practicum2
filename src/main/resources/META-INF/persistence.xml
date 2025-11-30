@@ -14,12 +14,14 @@
 
         <class>practicum2.entity.Department</class>
         <class>practicum2.entity.DeptEmp</class>
-        <class>practicum2.entity.compositeKeys.DeptEmpId</class>
+<!--        <class>practicum2.entity.compositeKeys.DeptEmpId</class>-->
         <class>practicum2.entity.DeptManager</class>
-        <class>practicum2.entity.compositeKeys.DeptManagerId</class>
+<!--        <class>practicum2.entity.compositeKeys.DeptManagerId</class>-->
         <class>practicum2.entity.Employee</class>
         <class>practicum2.entity.Salary</class>
+<!--        <class>practicum2.entity.compositeKeys.SalaryId</class>-->
         <class>practicum2.entity.Title</class>
+<!--        <class>practicum2.entity.compositeKeys.TitleId</class>-->
 
         <properties>
             <!--access db through jdbc-->

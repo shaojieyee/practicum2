@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class DatabaseUtil {
     private static final String DBNAME = "employees";
-    private static final String PERSISTENCE_UNIT_NAME = "EmployeeService";
+    private static final String PERSISTENCE_UNIT_NAME = "a_persistent_fellow";
 
     private DatabaseUtil() {}
 
@@ -18,7 +18,7 @@ public class DatabaseUtil {
         persistenceMap.put("jakarta.persistence.jdbc.url",
                 "jdbc:mariadb://localhost:3306/" + DBNAME);
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("a_persistent_fellow", persistenceMap);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME, persistenceMap);
         return emf.createEntityManager();
     }
 

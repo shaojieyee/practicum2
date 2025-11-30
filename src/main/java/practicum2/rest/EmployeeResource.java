@@ -15,6 +15,12 @@ public class EmployeeResource {
     public EmployeeResource() {this.employeeDao = new EmployeeDao();}
 
     @GET
+    @Path("/ping")
+    public Response ping() {
+        return Response.ok().entity("Service online").build();
+    }
+
+    @GET
     @Path("/{empNo}")
     public Response getEmployeeByEmpNo(@PathParam("empNo") int empNo) {
 
@@ -33,4 +39,17 @@ public class EmployeeResource {
                     .build();
         }
     }
+
+//    @GET
+//    @Path("/deparments")
+//    public Response getDisnstictDeparments(@PathParam("deptNo") String deptNo) {
+//
+//        try {
+//
+//        } catch (Exception e) {
+//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+//                    .entity("{\"error\": \"Internal server error: " + e.getMessage() + "\"}")
+//                    .build();
+//        }
+//    }
 }

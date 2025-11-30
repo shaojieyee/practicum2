@@ -1,7 +1,10 @@
 package practicum2.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import practicum2.entity.compositeKeys.TitleId;
 
 import java.time.LocalDate;
 
@@ -10,41 +13,41 @@ import java.time.LocalDate;
 public class Title {
 
     //relationship
-    @Id
+    @EmbeddedId
+    private TitleId titleId;
+
     @ManyToOne
+    @MapsId("empNo")
     @JoinColumn(name="emp_no", referencedColumnName = "emp_no")
+    @JsonIgnoreProperties("titles")
     private Employee employee;
 
     @Column(name="title", length = 50)
     private String title;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name="from_date")
-    private LocalDate fromDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name="to_date")
     private LocalDate toDate;
 
     //constructor
     public Title(){}
-    public Title(Employee employee, String title, LocalDate from_date, LocalDate to_date) {
-        this.employee = employee;
+    public Title(int emp_no, String title, LocalDate from_date, LocalDate to_date) {
+        this.titleId = new TitleId(emp_no, from_date);
         this.title = title;
-        this.fromDate = from_date;
         this.toDate = to_date;
     }
     //getter
-    public Employee getEmp_no() {return this.employee;}
     public String getTitle() {return this.title;}
-    public LocalDate getFrom_date() {return this.fromDate;}
-    public LocalDate getTo_date() {return this.toDate;}
+    @JsonGetter("fromDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    public LocalDate getFromDate() {return titleId !=null ? titleId.getFromDate(): null;}
+    public LocalDate getToDate() {return this.toDate;}
     //setter
-    public void setEmp_no(Employee employee) {this.employee = employee;}
     public void setTitle(String title) {this.title = title;}
-    public void setFrom_date(LocalDate from_date) {this.fromDate = from_date;}
-    public void setTo_date(LocalDate to_date) {this.toDate = to_date;}
+    public void setFromDate(LocalDate from_date) {this.titleId.setFromDate(from_date);}
+    public void setToDate(LocalDate to_date) {this.toDate = to_date;}
     //toString
     public String toString(){
         return String.format("empNo: %s, title: %s, fromDate: %s, toDate: %s",
-                this.employee != null ? this.employee.getEmpNo() : "null", this.title, this.fromDate, this.toDate);
+                this.employee != null ? this.employee.getEmpNo() : "null", this.title, this.titleId.getFromDate(), this.toDate);
     }
 }

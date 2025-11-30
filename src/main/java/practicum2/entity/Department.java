@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(name = "Department.findDistinctDepartments",
+        query = "SELECT DISTINCT d FROM Department d"
+)
 @Entity
 @Table(name = "departments", schema = "employees")
 public class Department {

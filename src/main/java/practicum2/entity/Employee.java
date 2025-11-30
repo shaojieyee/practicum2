@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedQuery(name = "Employee.findByEmpNo",
-        query = "SELECT DISTINCT e FROM Employee e " +
-                "LEFT JOIN FETCH e.salaries " +
-                "WHERE e.empNo = :empNo")
+        query = "SELECT DISTINCT e FROM Employee e WHERE e.empNo = :empNo")
 @Entity
 @Table(name = "employees", schema = "employees")
 public class Employee {
@@ -69,6 +67,7 @@ public class Employee {
     public Gender getGender() {return gender;}
     public LocalDate getHireDate() {return hireDate;}
     public List<Salary> getSalaries() { return salaries; }
+    public List<Title> getTitles() {return titles;}
 
     //setter
     public void setEmpNo(int emp_no) {this.empNo = emp_no;}
@@ -78,6 +77,7 @@ public class Employee {
     public void setGender(Gender gender) {this.gender = gender;}
     public void setHireDate(LocalDate hire_date) {this.hireDate = hire_date;}
     public void setSalaries(List<Salary> salaries) {this.salaries = salaries;}
+    public void setTitles(List<Title> titles) {this.titles = titles;}
 
     //toString
     @Override
