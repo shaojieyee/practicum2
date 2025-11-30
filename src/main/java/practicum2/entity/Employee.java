@@ -1,39 +1,56 @@
 package practicum2.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(name = "Employee.findByEmpNo",
+        query = "SELECT DISTINCT e FROM Employee e " +
+                "LEFT JOIN FETCH e.salaries " +
+                "WHERE e.empNo = :empNo")
 @Entity
 @Table(name = "employees", schema = "employees")
 public class Employee {
-    public enum Gender {M,F}
+    public enum Gender {M, F}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_no", precision = 11)
     private int empNo;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_date")
     private LocalDate birthDate;
     @Column(name = "first_name", length = 14)
     private String firstName;
     @Column(name = "last_name" , length = 16)
     private String lastName;
-    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", length = 1)
     private Gender gender;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "hire_date")
     private LocalDate hireDate;
 
     //relationship
     @OneToMany(mappedBy = "employee")
-    private List<DeptEmp> DeptEmps;
+    @JsonIgnoreProperties("employee")
+    private List<DeptEmp> DeptEmps = new ArrayList<>();
+
     @OneToMany(mappedBy = "employee")
-    private List<DeptManager> DeptManagers;
+    @JsonIgnoreProperties("employee")
+    private List<DeptManager> DeptManagers = new ArrayList<>();
+
     @OneToMany(mappedBy = "employee")
-    private List<Salary> salaries;
+    @JsonIgnoreProperties("employee")
+    private List<Salary> salaries = new ArrayList<>();
+
     @OneToMany(mappedBy = "employee")
-    private List<Title> titles;
+    @JsonIgnoreProperties("employee")
+    private List<Title> titles = new ArrayList<>();
 
     //constructor
     public Employee() {}
@@ -51,6 +68,8 @@ public class Employee {
     public String getLastName() {return lastName;}
     public Gender getGender() {return gender;}
     public LocalDate getHireDate() {return hireDate;}
+    public List<Salary> getSalaries() { return salaries; }
+
     //setter
     public void setEmpNo(int emp_no) {this.empNo = emp_no;}
     public void setBirthDate(LocalDate birth_date) {this.birthDate = birth_date;}
@@ -58,6 +77,8 @@ public class Employee {
     public void setLastName(String last_name) {this.lastName = last_name;}
     public void setGender(Gender gender) {this.gender = gender;}
     public void setHireDate(LocalDate hire_date) {this.hireDate = hire_date;}
+    public void setSalaries(List<Salary> salaries) {this.salaries = salaries;}
+
     //toString
     @Override
     public String toString() {

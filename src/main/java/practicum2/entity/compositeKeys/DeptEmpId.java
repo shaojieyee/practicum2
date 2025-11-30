@@ -1,4 +1,4 @@
-package practicum2.entity.compsiteKeys;
+package practicum2.entity.compositeKeys;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

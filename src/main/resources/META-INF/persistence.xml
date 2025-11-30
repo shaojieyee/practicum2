@@ -12,12 +12,14 @@
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <!--
-        the class tag is not required for this case as the managed Entity class
-        is located at the root folder.
-
-        <class>practicum2.entity.TestEmployee</class>
-        -->
+        <class>practicum2.entity.Department</class>
+        <class>practicum2.entity.DeptEmp</class>
+        <class>practicum2.entity.compositeKeys.DeptEmpId</class>
+        <class>practicum2.entity.DeptManager</class>
+        <class>practicum2.entity.compositeKeys.DeptManagerId</class>
+        <class>practicum2.entity.Employee</class>
+        <class>practicum2.entity.Salary</class>
+        <class>practicum2.entity.Title</class>
 
         <properties>
             <!--access db through jdbc-->

@@ -1,10 +1,10 @@
 package practicum2.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import practicum2.entity.compsiteKeys.DeptEmpId;
+import practicum2.entity.compositeKeys.DeptEmpId;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name="dept_emp", schema = "employees")
@@ -12,8 +12,10 @@ public class DeptEmp {
 
     @EmbeddedId //composite key
     private DeptEmpId deptEmpId;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name="from_date")
     private LocalDate fromDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name="to_date")
     private LocalDate toDate;
 
