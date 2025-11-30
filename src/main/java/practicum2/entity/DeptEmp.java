@@ -31,8 +31,8 @@ public class DeptEmp {
 
     //constructors
     public DeptEmp(){}
-    public DeptEmp(Employee empNo, Department deptNo, LocalDate from_date, LocalDate to_date){
-        this.deptEmpId = new DeptEmpId(deptNo.getDeptNo(), empNo.getEmpNo());
+    public DeptEmp(int empNo, String deptNo, LocalDate from_date, LocalDate to_date){
+        this.deptEmpId = new DeptEmpId(deptNo, empNo);
         this.fromDate = from_date;
         this.toDate = to_date;
     }

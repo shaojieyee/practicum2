@@ -68,6 +68,8 @@ public class Employee {
     public LocalDate getHireDate() {return hireDate;}
     public List<Salary> getSalaries() { return salaries; }
     public List<Title> getTitles() {return titles;}
+    public List<DeptEmp> getDeptEmps() {return DeptEmps;}
+    public List<DeptManager> getDeptManagers() {return DeptManagers;}
 
     //setter
     public void setEmpNo(int emp_no) {this.empNo = emp_no;}
@@ -78,6 +80,8 @@ public class Employee {
     public void setHireDate(LocalDate hire_date) {this.hireDate = hire_date;}
     public void setSalaries(List<Salary> salaries) {this.salaries = salaries;}
     public void setTitles(List<Title> titles) {this.titles = titles;}
+    public void setDeptEmps(List<DeptEmp> DeptEmps) {this.DeptEmps = DeptEmps;}
+    public void setDeptManagers(List<DeptManager> DeptManagers) {this.DeptManagers = DeptManagers;}
 
     //toString
     @Override

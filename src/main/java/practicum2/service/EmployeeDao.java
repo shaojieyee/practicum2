@@ -17,8 +17,11 @@ public class EmployeeDao {
                     .setParameter("empNo", empNo)
                     .getSingleResult();
 
-            employee.getSalaries().size(); // This forces initialization
-            employee.getTitles().size();   // This forces initialization
+            // This forces initialization else have the failed to lazily initialize a collection of role error
+            employee.getSalaries().size();
+            employee.getTitles().size();
+            employee.getDeptEmps().size();
+            employee.getDeptManagers().size();
 
             return employee;
 
