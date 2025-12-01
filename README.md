@@ -1,8 +1,8 @@
 <h2>Http requests:</h2>
 <b>End point 3: return all employee records by department with pagination</b>
-<p>http://localhost:8092/practicum2/api/employees/in/{deptNo}/page/{empNo}</p>
+<p>http://localhost:8092/practicum2/api/employees/department?deptNo=d001&page=1
 <b>End point 2: return full employee record given employee number</b>
-<p>http://localhost:8092/practicum2/api/employees/{empNo}</p>
+<p>http://localhost:8092/practicum2/api/employees/id?empNo=110022</p>
 <b>End point 1: getting all the names and department numbers</b>
 <p>http://localhost:8092/practicum2/api/departments/list</p>
 <b>Test connection:</b>
