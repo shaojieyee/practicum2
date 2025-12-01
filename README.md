@@ -1,4 +1,8 @@
 <h2>Http requests:</h2>
+<b>End point 3: return all employee records by department with pagination</b>
+<p>http://localhost:8092/practicum2/api/employees/in/{deptNo}/page/{empNo}</p>
+<b>End point 2: return full employee record given employee number</b>
+<p>http://localhost:8092/practicum2/api/employees/{empNo}</p>
 <b>End point 1: getting all the names and department numbers</b>
 <p>http://localhost:8092/practicum2/api/departments/list</p>
 <b>Test connection:</b>
@@ -7,6 +11,8 @@
 
 <h3>lastest updates:</h3>
 <p> </p>
+<p>15. completed end point 3</p>
+<p>14. add EmployeeDto, added a query in employeeResource and created a new path</p>
 <p>13. completed end point 2</p>
 <p>12. add deptno and dept name to display with employee json</p>
 <p>11. completed end point 1</p>
