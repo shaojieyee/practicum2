@@ -34,19 +34,19 @@ public class Employee {
     private LocalDate hireDate;
 
     //relationship
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("employee")
     private List<DeptEmp> DeptEmps = new ArrayList<>();
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("employee")
     private List<DeptManager> DeptManagers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("employee")
     private List<Salary> salaries = new ArrayList<>();
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("employee")
     private List<Title> titles = new ArrayList<>();
 

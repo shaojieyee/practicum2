@@ -23,7 +23,6 @@ public class EmployeeResource {
     @GET
     @Path("/{empNo}")
     public Response getEmployeeByEmpNo(@PathParam("empNo") int empNo) {
-
         try {
             Employee employee = employeeDao.findEmployeeByEmpNo(empNo);
             if (employee != null) {

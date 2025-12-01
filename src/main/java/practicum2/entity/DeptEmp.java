@@ -40,10 +40,14 @@ public class DeptEmp {
     public DeptEmpId DeptEmpId() {return this.deptEmpId;}
     public LocalDate getFromDate() {return this.fromDate;}
     public LocalDate getToDate() {return this.toDate;}
+    public String getDeptNo() {return this.deptEmpId.getDeptNo();}
+    public String getDeptName(){return this.department.getDeptName();}
     //setter
     public void setDeptEmpId(Employee empNo, Department deptNo) {this.deptEmpId = new DeptEmpId(deptNo.getDeptNo(), empNo.getEmpNo());}
     public void setFromDate(LocalDate fromDate) {this.fromDate = fromDate;}
     public void setToDate(LocalDate toDate) {this.toDate = toDate;}
+    public void setDeptNo(String deptNo) {this.deptEmpId.setDeptNo(deptNo);}
+    public void setDeptName(String deptName) {this.department.setDeptName(deptName);}
     //toString
     @Override
     public String toString(){
