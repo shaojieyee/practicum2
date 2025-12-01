@@ -7,6 +7,7 @@
 
 <h3>lastest updates:</h3>
 <p> </p>
+<p>12. add deptno and dept name to display with employee json</p>
 <p>11. completed end point 1</p>
 <p>10. show deptEmp and dept manager that the employee is in</p>
 <p>9. created a composite key for title to be able to queried along with employee table</p>
