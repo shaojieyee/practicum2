@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import practicum2.dto.EmployeeDto;
+import practicum2.dto.PromotionDto;
 import practicum2.entity.Employee;
 import practicum2.service.EmployeeDao;
 
@@ -18,14 +19,14 @@ public class EmployeeResource {
     public EmployeeResource() {this.employeeDao = new EmployeeDao();}
 
     @GET
-    @Path("/ping")
+    @Path("/ping") // /ping
     public Response ping() {
         return Response.ok().entity("Employee service online").build();
     }
 
     @GET
-    @Path("/{empNo}")
-    public Response getEmployeeByEmpNo(@PathParam("empNo") int empNo) {
+    @Path("/id") // /id?empNo=110022
+    public Response getEmployeeByEmpNo(@QueryParam("empNo") int empNo) {
         try {
             Employee employee = employeeDao.findEmployeeByEmpNo(empNo);
             if (employee != null) {
@@ -43,8 +44,8 @@ public class EmployeeResource {
     }
 
     @GET
-    @Path("/in/{deptNo}/page/{page}")
-    public Response getEmployeeByDeptNo(@PathParam("deptNo") String deptNo, @PathParam("page") int page) {
+    @Path("/department") // /department?deptNo=d001&page=1
+    public Response getEmployeeByDeptNo(@QueryParam("deptNo") String deptNo, @QueryParam("page") int page) {
         try {
             List<EmployeeDto> employees = employeeDao.findEmployeesByDept(deptNo, page);
             if (employees != null) {
@@ -60,4 +61,17 @@ public class EmployeeResource {
                     .build();
         }
     }
+
+//    @POST
+//    @Path("/promote") // /promotion?deptNo=d001&page=1
+//    public Response promoteEmployee(PromotionDto promotion){
+//        try {
+//
+//
+//        } catch (Exception e) {
+//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+//                    .entity("{\"error\": \"Internal server error: " + e.getMessage() + "\"}")
+//                    .build();
+//        }
+//    }
 }
