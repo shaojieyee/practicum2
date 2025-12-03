@@ -24,7 +24,7 @@ public class DepartmentResource {
 
     @GET
     @Path("/list")
-    public Response getDisnstictDeparments() {
+    public Response getDistinctDepartments() {
         try {
             List<Department> department = departmentDao.findAllUniqueDepartment();
             if (department != null) {
