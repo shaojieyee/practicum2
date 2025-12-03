@@ -1,13 +1,16 @@
 <h2>Http requests:</h2>
+<b>End point 4:  employee promotion</b>
+<p>param (empNo (not null), newTitle, newDeptNo, newManager, newSalary, newStartEndDateStr (in the format of yyyy-mm-dd</p>
+<p>Example: http://localhost:8092/promote?empNo=110022&newTitle=head%20chef&newDeptNo=d002&newManager=true&newSalary=123456&newStartEndDateStr=2025-12-12<p>
 <b>End point 3: return all employee records by department with pagination</b>
-<p>http://localhost:8092/practicum2/api/employees/department?deptNo=d001&page=1</p>
+<p>Example:  http://localhost:8092/practicum2/api/employees/department?deptNo=d001&page=1</p>
 <b>End point 2: return full employee record given employee number</b>
-<p>http://localhost:8092/practicum2/api/employees/id?empNo=110022</p>
+<p>Example:   http://localhost:8092/practicum2/api/employees/id?empNo=110022</p>
 <b>End point 1: getting all the names and department numbers</b>
-<p>http://localhost:8092/practicum2/api/departments/list</p>
+<p>Example:   http://localhost:8092/practicum2/api/departments/list</p>
 <b>Test connection:</b>
-<p>http://localhost:8092/practicum2/api/departments/ping</p>
-<p>http://localhost:8092/practicum2/api/employees/ping</p>
+<p>Example:   http://localhost:8092/practicum2/api/departments/ping</p>
+<p>Example:   http://localhost:8092/practicum2/api/employees/ping</p>
 
 <h3>lastest updates:</h3>
 <p> </p>
