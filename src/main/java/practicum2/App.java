@@ -36,5 +36,5 @@ public class App extends Application {
 //      "newDeptNo":"d001",
 //      "isNewManager":true,
 //      "newSalary":12435,
-//      "newStartEndDate":"yyyy-mm-dd"
+//      "newStartEndDate":"2025-12-08"
 // }
