@@ -44,12 +44,15 @@ public class DeptManager {
     public LocalDate getFromDate() {return this.fromDate;}
     public LocalDate getToDate() {return this.toDate;}
     public String getManagerName(){return this.employee.getFirstName() + " " + this.employee.getLastName();}
+//    public Employee getEmployee() {return this.employee;}
+    public Department getDepartment() {return this.department;}
     //setter
     public void setDeptManagerId(String dept_no, int emp_no) {this.deptManagerId = new DeptManagerId(dept_no, emp_no);}
     public void setFromDate(LocalDate from_date) {this.fromDate = from_date;}
     public void setToDate(LocalDate to_date) {this.toDate = to_date;}
     public void setManagerName(String firstName, String lastName){this.employee.setFirstName(firstName);this.employee.setLastName(lastName);}
-
+    public void setEmployee(Employee employee) {this.employee = employee;}
+    public void setDepartment(Department department) {this.department = department;}
     //toString
     @Override
     public String toString(){

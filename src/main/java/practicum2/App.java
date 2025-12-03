@@ -10,11 +10,11 @@ import java.util.Set;
 
 @ApplicationPath("/api")
 public class App extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> s = new HashSet<>();
-        s.add(EmployeeResource.class);
-        s.add(DepartmentResource.class);
-        return s;
-    }
+//    @Override
+//    public Set<Class<?>> getClasses() {
+//        Set<Class<?>> s = new HashSet<>();
+//        s.add(EmployeeResource.class);
+//        s.add(DepartmentResource.class);
+//        return s;
+//    }
 }

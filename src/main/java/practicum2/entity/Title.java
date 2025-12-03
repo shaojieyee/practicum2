@@ -41,10 +41,12 @@ public class Title {
     @JsonFormat(pattern = "yyyy-MM-dd")
     public LocalDate getFromDate() {return titleId !=null ? titleId.getFromDate(): null;}
     public LocalDate getToDate() {return this.toDate;}
+    public Employee getEmployee() {return this.employee;}
     //setter
     public void setTitle(String title) {this.title = title;}
     public void setFromDate(LocalDate from_date) {this.titleId.setFromDate(from_date);}
     public void setToDate(LocalDate to_date) {this.toDate = to_date;}
+    public void setEmployee(Employee employee) {this.employee = employee;}
     //toString
     public String toString(){
         return String.format("empNo: %s, title: %s, fromDate: %s, toDate: %s",

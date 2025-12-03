@@ -12,6 +12,7 @@ public class PromotionDto {
     private int empNo;
     private String newTitle; //if any
     private String newDeptNo; //if any
+    private boolean newManager; //if any
     private int newSalary; //if any
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate newStartEndDate;
@@ -34,6 +35,7 @@ public class PromotionDto {
     public String getNewDeptNo() {return this.newDeptNo;}
     public int getNewSalary() {return this.newSalary;}
     public LocalDate getNewStartEndDate() {return this.newStartEndDate;}
+    public boolean isNewManager() {return this.newManager;}
     public String getPrevTitle() {return this.prevTitle;}
     public String getPrevDeptNo() {return this.prevDeptNo;}
     public String getPrevSalary() {return this.prevSalary;}
@@ -43,6 +45,7 @@ public class PromotionDto {
     public void setNewTitle(String newTitle) {this.newTitle = newTitle;}
     public void setNewDeptNo(String newDeptNo) {this.newDeptNo = newDeptNo;}
     public void setNewSalary(int newSalary) {this.newSalary = newSalary;}
+    public void setNewManager(boolean isNewManager) {this.newManager = isNewManager;}
     public void setPrevTitle(String prevTitle) {this.prevTitle = prevTitle;}
     public void setPrevDeptNo(String prevDeptNo) {this.prevDeptNo = prevDeptNo;}
     public void setPrevSalary(String prevSalary) {this.prevSalary = prevSalary;}
