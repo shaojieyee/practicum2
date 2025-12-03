@@ -128,7 +128,7 @@ public class EmployeeDao {
             try {
                 Title newTitleRecord = new Title(empNo, newTitle, effectiveDate, indefiniteDate);
                 newTitleRecord.setEmployee(employee);
-                em.persist(newTitleRecord);
+                em.merge(newTitleRecord);
             }catch (Exception e){
                 throw new RuntimeException("{\"error\": \"employee is current having that title\"}");
             }
@@ -162,7 +162,7 @@ public class EmployeeDao {
                 DeptEmp newDeptEmp = new DeptEmp(empNo, newDeptNo, effectiveDate, indefiniteDate);
                 newDeptEmp.setEmployee(employee);
                 newDeptEmp.setDepartment(department);
-                em.persist(newDeptEmp);
+                em.merge(newDeptEmp);
             } else {
                 throw new IllegalArgumentException("{\"error\": \"Department not found\"}");
             }
@@ -183,7 +183,7 @@ public class EmployeeDao {
 
             //throw error if salary is the same as the new salary
             if (currentSalary.getSalary() == newSalary){
-                throw new RuntimeException("salary for that date exists");
+                throw new RuntimeException("Employee is already having this salary");
             }
 
             //set the toDate for the oldDepartment
@@ -194,7 +194,7 @@ public class EmployeeDao {
             try{
                 Salary newSalaryRecord = new Salary(empNo, newSalary, effectiveDate, indefiniteDate);
                 newSalaryRecord.setEmployee(employee);
-                em.persist(newSalaryRecord);
+                em.merge(newSalaryRecord);
             }catch (Exception e){
                 throw new RuntimeException("{\"error\": \"employee is already having this salary\"}");
             }
@@ -226,7 +226,7 @@ public class EmployeeDao {
             DeptManager newDeptManager = new DeptManager(newDeptNo, empNo, effectiveDate, indefiniteDate);
             newDeptManager.setEmployee(employee);
             newDeptManager.setDepartment(department);
-            em.persist(newDeptManager);
+            em.merge(newDeptManager);
         }
     }
 }
