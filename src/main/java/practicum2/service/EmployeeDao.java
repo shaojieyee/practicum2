@@ -84,7 +84,7 @@ public class EmployeeDao {
                 processDepartmentChange(employee, department, em,  empNo, newDeptNo, newStartEndDate);
             }
             //process salary change
-            if (newSalary >=0) {
+            if (newSalary >=1) {
                 processSalaryChange(employee, em, empNo, newSalary, newStartEndDate);
             }
             //process become manager

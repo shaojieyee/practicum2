@@ -87,7 +87,7 @@ public class EmployeeResource {
             if (promotionDto.isNewManager() && promotionDto.getNewTitle() == null){
                 promotionDto.setNewTitle(promotionDto.getPrevTitle() + "Manager");
             }
-            if (promotionDto.getNewTitle().toLowerCase().contains("manager")) {
+            if (promotionDto.getNewTitle()!=null && promotionDto.getNewTitle().toLowerCase().contains("manager")) {
                 promotionDto.setIsNewManager(true);
             }
 
