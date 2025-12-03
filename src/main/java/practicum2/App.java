@@ -29,18 +29,12 @@ public class App extends Application {
 //Example:  http://localhost:8092/practicum2/api/employees/department?deptNo=d001&page=1
 
 //End point 4:  employee promotion
-//query fields: (
-//      empNo (not null),
-//      newTitle,
-//      newDeptNo,
-//      newManager,
-//      newSalary,
-//      newStartEndDateStr (in the format of yyyy-mm-dd)
-//  )
-//http://localhost:8092/promote?
-//          empNo=110022
-//          &newTitle=head%20chef
-//          &newDeptNo=d002
-//          &newManager=true
-//          &newSalary=123456
-//          &newStartEndDateStr=2025-12-12
+// http://localhost:8092/practicum2/api/employees/promote
+// {
+//      "empNo":11111,
+//      "newTitle":"head engineer",
+//      "newDeptNo":"d001",
+//      "isNewManager":true,
+//      "newSalary":12435,
+//      "newStartEndDate":"yyyy-mm-dd"
+// }

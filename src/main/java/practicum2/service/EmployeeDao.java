@@ -2,11 +2,9 @@ package practicum2.service;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import practicum2.dto.EmployeeDto;
 import practicum2.entity.*;
-import practicum2.util.DatabaseUtil;
+import practicum2.util.EmFactoryUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +17,7 @@ public class EmployeeDao {
     public Employee findEmployeeByEmpNo(int empNo) {
         EntityManager em = null;
         try {
-            em = DatabaseUtil.createEntityManager();
+            em = EmFactoryUtil.getEntityManager();
             return em.createNamedQuery("Employee.findByEmpNo", Employee.class)
                     .setParameter("empNo", empNo)
                     .getSingleResult();
@@ -27,7 +25,7 @@ public class EmployeeDao {
         } catch (NoResultException e) {
             return null;
         } finally {
-            DatabaseUtil.closeResources(em);
+            EmFactoryUtil.closeResources(em);
         }
     }
 
@@ -41,7 +39,7 @@ public class EmployeeDao {
         }
 
         try {
-            em = DatabaseUtil.createEntityManager();
+            em = EmFactoryUtil.getEntityManager();
             return em.createQuery(
                          "SELECT NEW practicum2.dto.EmployeeDto(" +
                             "e.empNo, e.firstName, e.lastName, e.hireDate) " +
@@ -57,7 +55,7 @@ public class EmployeeDao {
         } catch (NoResultException e) {
             return null;
         } finally {
-            DatabaseUtil.closeResources(em);
+            EmFactoryUtil.closeResources(em);
         }
     }
 
@@ -65,7 +63,7 @@ public class EmployeeDao {
         EntityManager em = null;
 
         try {
-            em = DatabaseUtil.createEntityManager();
+            em = EmFactoryUtil.getEntityManager();
             em.getTransaction().begin();
 
             Employee employee = em.find(Employee.class, empNo);
@@ -106,23 +104,25 @@ public class EmployeeDao {
             }
             throw e;
         } finally {
-            DatabaseUtil.closeResources(em);
+            EmFactoryUtil.closeResources(em);
         }
     }
     //Services
     private void processTitleChange(Employee employee, EntityManager em, int empNo, String newTitle, LocalDate effectiveDate){
         try {
-            Title currentTitle = em.createQuery(
-                            "SELECT t FROM Title t " +
-                                "WHERE t.employee.empNo = :empNo " +
-                                "AND t.toDate = :indefiniteDate", Title.class)
-                            .setParameter("empNo", empNo)
-                            .setParameter("indefiniteDate", indefiniteDate)
-                            .getSingleResult();
+            try {
+                Title currentTitle = em.createQuery(
+                                "SELECT t FROM Title t " +
+                                        "WHERE t.employee.empNo = :empNo " +
+                                        "AND t.toDate = :indefiniteDate", Title.class)
+                        .setParameter("empNo", empNo)
+                        .setParameter("indefiniteDate", indefiniteDate)
+                        .getSingleResult();
 
-            //set the toDate for the old title to the previous day of the new date
-            currentTitle.setToDate(effectiveDate.minusDays(1));
-            em.merge(currentTitle);
+                //set the toDate for the old title to the previous day of the new date
+                currentTitle.setToDate(effectiveDate.minusDays(1));
+                em.merge(currentTitle);
+            } catch (NoResultException e) {}
 
             //new title record to push to db
             try {

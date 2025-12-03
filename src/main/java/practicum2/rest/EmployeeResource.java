@@ -5,6 +5,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import practicum2.dto.EmployeeDto;
+import practicum2.dto.PromotionDto;
 import practicum2.entity.Employee;
 import practicum2.service.EmployeeDao;
 
@@ -68,61 +69,52 @@ public class EmployeeResource {
 
     @POST
     @Path("/promote")// /promote?empNo=110022&newTitle=head%20chef&newDeptNo=d002&newManager=true&newSalary=123456&newStartEndDateStr=2025-12-12
-    public Response promoteEmployee(
-            @QueryParam("empNo") int empNo,
-            @QueryParam("newTitle") String newTitle,
-            @QueryParam("newDeptNo") String newDeptNo,
-            @QueryParam("newManager") @DefaultValue("false") boolean newManager,
-            @QueryParam("newSalary") int newSalary,
-            @QueryParam("effectiveDate") String newStartEndDateStr
-    ) {
+    public Response promoteEmployee(PromotionDto promotionDto) {
         try {
             //check if empNo is provided
-            if (empNo <= 0) {
+            if (promotionDto.getEmpNo() <= 0) {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("{\"error\": \"Employee number (empNo) is required and must be positive\"}")
                         .build();
             }
             //check if at least 1 new data is provided
-            if (newTitle == null && newDeptNo == null && !newManager && newSalary <= 0) {
+            if (!promotionDto.hasAtLeaseAField()) {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("{\"error\": \"At least one promotion field must be provided (newTitle, newDeptNo, newManager, or newSalary)\"}")
                         .build();
             }
             //check isManger corresponds to title, vice versa
-            if (newManager){
-                newTitle = newTitle + "Manager";
+            if (promotionDto.isNewManager() && promotionDto.getNewTitle() == null){
+                promotionDto.setNewTitle(promotionDto.getPrevTitle() + "Manager");
             }
-            if (newTitle != null && newTitle.toLowerCase().contains("manager")) {
-                newManager = true;
+            if (promotionDto.getNewTitle().toLowerCase().contains("manager")) {
+                promotionDto.setIsNewManager(true);
             }
 
             //check if newStartEndDate is provided
-            LocalDate newStartEndDate;
-            if (newStartEndDateStr != null && !newStartEndDateStr.trim().isEmpty()) {
-                try {
-                    newStartEndDate = LocalDate.parse(newStartEndDateStr);
-                }catch(Exception e){
-                    return Response.status(Response.Status.BAD_REQUEST)
-                            .entity("{\"error\": \"Invalid date format. Use YYYY-MM-DD\"}")
-                            .build();
-                }
-            } else {
-                newStartEndDate = LocalDate.now();
+            if (promotionDto.getNewStartEndDate() == null) {
+                    promotionDto.setNewStartEndDate(LocalDate.now());
             }
 
             //the actual processing
             //check if employee exists first
-            Employee existingEmployee = employeeDao.findEmployeeByEmpNo(empNo);
+            Employee existingEmployee = employeeDao.findEmployeeByEmpNo(promotionDto.getEmpNo());
             if (existingEmployee == null) {
                 return Response.status(Response.Status.NOT_FOUND)
                         .entity("{\"error\": \"Employee not found\"}")
                         .build();
             }
             //then process promotion
-            employeeDao.promote(empNo, newTitle, newDeptNo, newManager, newSalary, newStartEndDate);
+            employeeDao.promote(
+                    promotionDto.getEmpNo(),
+                    promotionDto.getNewTitle(),
+                    promotionDto.getNewDeptNo(),
+                    promotionDto.isNewManager(),
+                    promotionDto.getNewSalary(),
+                    promotionDto.getNewStartEndDate()
+            );
             //print the updated employee
-            Employee updatedEmployee = employeeDao.findEmployeeByEmpNo(empNo);
+            Employee updatedEmployee = employeeDao.findEmployeeByEmpNo(promotionDto.getEmpNo());
             return Response.ok(updatedEmployee).build();
 
         } catch (Exception e) {
